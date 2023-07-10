@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InertiaTestController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,14 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('/inertia-test', function () {
+    return Inertia::render('InertiaTest');
+});
+
+Route::get('/inertia/index', [InertiaTestController::class, 'index'])->name('inertia.index');
+Route::get('/inertia/show/{id}', [InertiaTestController::class, 'show'])->name('inertia.show');
+Route::post('/inertia/store', [InertiaTestController::class, 'store'])->name('inertia.store');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
